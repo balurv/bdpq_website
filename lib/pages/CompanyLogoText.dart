@@ -9,7 +9,7 @@ class CompanyLogoText extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        Navigator.pushNamed(context, '/');
+        Navigator.pushNamed(context, '/welcome');
       },
       child: Text(buttonText),
     );

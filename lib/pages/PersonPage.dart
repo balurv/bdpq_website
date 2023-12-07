@@ -10,7 +10,10 @@ class PersonPage extends StatefulWidget {
   _PersonPageState createState() => _PersonPageState();
 }
 
+enum Gender { MALE, FEMALE, OTHER }
+
 class _PersonPageState extends State<PersonPage> {
+  Gender? selectedGender;
   final PersonService apiService = PersonService();
   final _formKey = GlobalKey<FormState>();
 
@@ -77,7 +80,7 @@ class _PersonPageState extends State<PersonPage> {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your email';
                   } else if (!RegExp(
-                      r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$')
+                          r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$')
                       .hasMatch(value)) {
                     return 'Enter a valid email address';
                   }
@@ -99,6 +102,21 @@ class _PersonPageState extends State<PersonPage> {
                   return null;
                 },
                 obscureText: true,
+              ),
+              DropdownButton<Gender>(
+                hint: const Text('Select Gender Type'),
+                value: selectedGender,
+                onChanged: (Gender? value) {
+                  setState(() {
+                    selectedGender = value;
+                  });
+                },
+                items: Gender.values.map((Gender type) {
+                  return DropdownMenuItem<Gender>(
+                    value: type,
+                    child: Text(type.toString().split('.').last),
+                  );
+                }).toList(),
               ),
               const SizedBox(height: 20),
               Row(
@@ -125,6 +143,7 @@ class _PersonPageState extends State<PersonPage> {
                           phone: phoneController.text,
                           email: emailController.text,
                           password: passwordController.text,
+                          gender: selectedGender != null ? genderToInt(selectedGender!): 0
                         );
                         apiService.savePerson(personDto);
                       }
@@ -139,4 +158,8 @@ class _PersonPageState extends State<PersonPage> {
       ),
     );
   }
+
+ int genderToInt(Gender gender) {
+    return gender.index;
+ }
 }

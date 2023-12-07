@@ -31,6 +31,14 @@ class ProfilePage extends StatelessWidget {
                     'Email: ${responseData!['email']}',
                     style: const TextStyle(fontSize: 16),
                   ),
+                  Text(
+                    'Gender:${responseData!['gender']}',
+                    style: const TextStyle(fontSize: 16),
+                  ),
+                  Text(
+                    'Phone:${responseData!['phone']}',
+                    style: const TextStyle(fontSize: 16),
+                  ),
                   // Add more fields as needed
                 ],
               ),

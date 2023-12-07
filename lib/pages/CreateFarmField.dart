@@ -8,7 +8,7 @@ import 'FarmerFieldPage.dart';
 
 class CreateFarmFieldPage extends StatefulWidget {
   Map<String, dynamic>? responseData;
-  CreateFarmFieldPage({Key? key, this.responseData}) : super(key: key);
+  CreateFarmFieldPage({super.key, this.responseData});
 
   @override
   _CreateFarmFieldPageState createState() =>
@@ -55,7 +55,7 @@ class _CreateFarmFieldPageState extends State<CreateFarmFieldPage> {
   }
 
   // Function to handle the form submission
-  void _submitForm() async {
+  void  _submitForm() async {
     // Replace the URL with your backend API endpoint
     const String apiUrl = 'http://localhost:8080/person';
     int farmerId = responseData!['id']; // Replace with the actual farmerId
@@ -70,7 +70,7 @@ class _CreateFarmFieldPageState extends State<CreateFarmFieldPage> {
           double.parse(breadthController.text),
       'longitude': longitude,
       'owner': responseData!['farmFields'],
-      'soilType': selectedSoilType != null ? soilTypeToInt(selectedSoilType!) : null,
+      'soilType': selectedSoilType != null ? soilTypeToInt(selectedSoilType!) : SoilType.RED_SOIL,
     };
 
     // Send a PATCH request to update the farm field

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:form_data/pages/FarmerFieldPage.dart';
+import 'package:form_data/pages/JobCardPage.dart';
 
+import 'CreateJobCardPage.dart';
 import 'ProfilePage.dart';
 
 class WelcomePage extends StatelessWidget {
   final Map<String, dynamic>? responseData;
 
-  const WelcomePage({Key? key, this.responseData}):super(key: key);
+  const WelcomePage({Key? key, this.responseData}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +34,37 @@ class WelcomePage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => FarmerFieldPge(responseData: responseData),
+                    builder: (context) =>
+                        FarmerFieldPge(responseData: responseData),
                   ),
                 );
                 // Navigator.pushNamed(context, '/farmerfileds');
               },
-              child: const Text('View farm field'),
+              child: const Text('My FarmField'),
+            ),
+            // ElevatedButton(
+            //   onPressed: () {
+            //     Navigator.push(
+            //       context,
+            //       MaterialPageRoute(
+            //         builder: (context) =>
+            //             CreateJobCardPage(responseData: responseData),
+            //       ),
+            //     );
+            //   },
+            //   child: const Text('My JobCard'),
+            // ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        JobCardPage(responseData: responseData),
+                  ),
+                );
+              },
+              child: const Text('My JobCard'),
             ),
             ElevatedButton(
               onPressed: () {
@@ -45,7 +72,8 @@ class WelcomePage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ProfilePage(responseData: responseData),
+                    builder: (context) =>
+                        ProfilePage(responseData: responseData),
                   ),
                 );
               },

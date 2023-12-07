@@ -11,10 +11,6 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Row(
           children: [
-            CompanyLogoText(buttonText: 'bdpq'),
-            SizedBox(
-              width: 5,
-            ),
             Text('Company'),
             Text('')
           ],
