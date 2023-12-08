@@ -68,7 +68,7 @@ class _JobCardPageState extends State<JobCardPage> {
         future: jobCardList,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else {
@@ -87,7 +87,7 @@ class _JobCardPageState extends State<JobCardPage> {
                       ),
                       Text(
                         'Machinery:${jobCards[index]['machineryType']}',
-                      )
+                      ),
                     ],
                   ),
                   // Add more details as needed

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:form_data/pages/FarmerFieldPage.dart';
 import 'package:form_data/pages/JobCardPage.dart';
+import 'package:form_data/pages/ViewJobCardPage.dart';
 
 import 'CreateJobCardPage.dart';
 import 'ProfilePage.dart';
@@ -60,7 +61,10 @@ class WelcomePage extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) =>
-                        JobCardPage(responseData: responseData),
+                        // JobCardPage(responseData: responseData,),
+                        ViewJobCardPage(
+                      responseData: responseData,
+                    ),
                   ),
                 );
               },
