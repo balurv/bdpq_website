@@ -22,7 +22,6 @@ class _JobCardOpenPageState extends State<JobCardOpenPage> {
 
   _JobCardOpenPageState(this.responseData, this.jobStatus);
   TextEditingController farmerIdController = TextEditingController();
-  // List<dynamic> jobCardList = [];
   late Future<List<dynamic>> jobCardList;
 
   @override
@@ -33,7 +32,6 @@ class _JobCardOpenPageState extends State<JobCardOpenPage> {
   }
 
   Future<List<dynamic>> getJobCard() async {
-
     final response = await http.get(
       Uri.parse(
           'http://localhost:8080/jobcard/status?'
@@ -42,7 +40,9 @@ class _JobCardOpenPageState extends State<JobCardOpenPage> {
 
     if (response.statusCode == 200) {
       print('hello sir ${response.body}');
-      return json.decode(response.body);
+      final jsonResponse = json.decode(response.body);
+      final List<dynamic> jobCards = jsonResponse['content'];
+      return jobCards;
     } else {
       print(response.body);
       throw Exception('Failed to load job card');
@@ -69,23 +69,24 @@ class _JobCardOpenPageState extends State<JobCardOpenPage> {
           } else {
             List<dynamic> jobCards = snapshot.data!;
             return ListView.builder(
-                itemCount: jobCards.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text('Job ID: ${jobCards[index]['id']}'),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Field: ${jobCards[index]['farmFields']}',
-                        ),
-                        Text(
-                          'Machinery:${jobCards[index]['machineryType']}',
-                        ),
-                      ],
-                    ),
-                  );
-                });
+              itemCount: jobCards.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text('Job ID: ${jobCards[index]['id']}'),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Field: ${jobCards[index]['farmFields'][0]['name']}',
+                      ),
+                      Text(
+                        'Machinery:${jobCards[index]['machineryType']}',
+                      ),
+                    ],
+                  ),
+                );
+              },
+            );
           }
         },
       ),

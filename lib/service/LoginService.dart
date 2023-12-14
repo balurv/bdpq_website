@@ -38,23 +38,24 @@ class LoginService {
         // Navigator.pushNamed(context, '/welcome');
         // MaterialPageRoute(builder: (context) => WelcomePage());
       } else {
-        _showLoginFailedDialog();
+        _showLoginFailedDialog(const Text('Invalid Credentials ;(.'));
         // Handle login failure
         print("Login failed");
       }
     } catch (e) {
       // Handle exceptions
+      _showLoginFailedDialog(const Text('Server Down'));
       print("Exception: $e");
     }
   }
 
-  void _showLoginFailedDialog() {
+  void _showLoginFailedDialog(Text text) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Alert'),
-          content: const Text('Invalid Credentials ;(.'),
+          content: text,
           actions: <Widget>[
             TextButton(
               onPressed: () {
