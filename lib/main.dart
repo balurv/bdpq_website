@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:form_data/pages/CreateFarmField.dart';
 import 'package:form_data/pages/FarmerFieldPage.dart';
 import 'package:form_data/pages/HomePage.dart';
-import 'package:form_data/pages/LocationPage.dart';
 import 'package:form_data/pages/LoginPage.dart';
 import 'package:form_data/pages/ProfilePage.dart';
 import 'package:form_data/pages/SettingPage.dart';

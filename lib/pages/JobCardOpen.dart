@@ -82,6 +82,7 @@ class _JobCardOpenPageState extends State<JobCardOpenPage> {
                       Text(
                         'Machinery:${jobCards[index]['machineryType']}',
                       ),
+                      Text('Estimated cost :${jobCards[index]['estimatedPayment']}')
                     ],
                   ),
                 );
